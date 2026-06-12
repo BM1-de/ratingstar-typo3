@@ -1,0 +1,19 @@
+{
+    "name": "ratingstar/typo3-seal",
+    "description": "RatingStar-Siegel und Google-Sterne (Rich Snippets) für TYPO3.",
+    "type": "typo3-cms-extension",
+    "license": "proprietary",
+    "require": {
+        "typo3/cms-core": "^13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "RatingStar\\Seal\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "ratingstar_seal"
+        }
+    }
+}
