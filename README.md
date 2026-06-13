@@ -1,28 +1,35 @@
-# RatingStar für TYPO3
+# RatingStar für TYPO3 (`ratingstar_seal`)
 
-Bindet das RatingStar-Siegel und die Google-Sterne (Rich Snippets) einer
-RatingStar-Filiale (https://ratingstar.de) in eine TYPO3-Website ein.
+Bindet das **RatingStar-Siegel** und die **Google-Sterne** (Rich Snippets /
+`AggregateRating`) einer [RatingStar](https://ratingstar.de)-Filiale in eine
+TYPO3-Website ein.
 
-**Status: in Entwicklung** — Funktionsumfang und Roadmap stehen in den
-Issues dieses Repos.
+> **Status: in Entwicklung (alpha).** Funktionsumfang und Roadmap stehen in den
+> Issues. Läuft auf TYPO3 13.4 LTS und 14.
 
-## Geplanter Funktionsumfang
+## Funktionsumfang (geplant)
 
-- Extension-Konfiguration: RatingStar-Profil-Slug + Embed-Key
-- Siegel-Widget (Rundsiegel, Banderole, Floating-Badge) als
-  Content-Element / Fluid-ViewHelper
-- Google-Sterne: serverseitiges JSON-LD über den offiziellen
-  RatingStar-PHP-Snippet-Endpunkt (`/seal/k/<key>.json`)
+- **Extension-Konfiguration:** RatingStar-Profil-Slug + Embed-Key, pro Site
+  konfigurierbar
+- **Siegel-Widget:** Rundsiegel, Banderole, Floating-Badge — als
+  Content-Element und als Fluid-ViewHelper `<rs:seal>`
+- **Google-Sterne:** serverseitiges JSON-LD (`AggregateRating`) über den
+  offiziellen RatingStar-Endpunkt, per TypoScript aktivierbar
 
-## Entwicklung
-
-Dieses Repo enthält **nur die Extension** (`ratingstar_seal`). Die lokale
-Test-Instanz liegt drumherum: DDEV-Projekt `ratingstar-plugin-typo3`
-(https://ratingstar-plugin-typo3.ddev.site, Backend `/typo3`, User `admin`),
-eingebunden als Composer-Path-Repository unter `packages/ratingstar_seal`.
+## Installation
 
 ```bash
-cd ~/Sites/Dev/ratingstar-plugin-typo3
-ddev start
-ddev composer require ratingstar/typo3-seal:@dev
+composer require ratingstar/typo3-seal
 ```
+
+Anschließend Profil-Slug und Embed-Key der Filiale in der
+Extension-Konfiguration hinterlegen.
+
+## Anforderungen
+
+- TYPO3 13.4 LTS oder 14
+- PHP 8.2+
+
+## Lizenz
+
+GPL-2.0-or-later

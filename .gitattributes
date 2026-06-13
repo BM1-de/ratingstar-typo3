@@ -1,0 +1,9 @@
+# Exclude development files from release packages (git archive / tailor)
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/.php-cs-fixer.php export-ignore
+/Build export-ignore
+/Documentation export-ignore
+/Tests export-ignore
+/phpstan.neon export-ignore
