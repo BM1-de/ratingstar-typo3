@@ -1,0 +1,19 @@
+# Rendering for the "RatingStar Seal" content element (CType: ratingstar_seal).
+# Standalone FLUIDTEMPLATE (no fluid_styled_content dependency). The FlexForm
+# (variant + position) is parsed into the "flexform" template variable; the
+# Fluid template then delegates to the <rs:seal> ViewHelper, which also loads
+# seal.js once per page.
+tt_content.ratingstar_seal = FLUIDTEMPLATE
+tt_content.ratingstar_seal {
+    templateName = Seal
+    templateRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Templates/ContentElements/
+    partialRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Partials/
+    layoutRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Layouts/
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\FlexFormProcessor
+        10 {
+            fieldName = pi_flexform
+            as = flexform
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <type>array</type>
+                <el>
+                    <variant>
+                        <label>Variante</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>banner</default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Banderole</numIndex><numIndex index="1">banner</numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Rundsiegel</numIndex><numIndex index="1">circle</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Trust-Bar</numIndex><numIndex index="1">bar</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">Profilkarte</numIndex><numIndex index="1">profile-card</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">Floating-Badge</numIndex><numIndex index="1">floating</numIndex></numIndex>
+                                <numIndex index="5"><numIndex index="0">Hero-Snippet</numIndex><numIndex index="1">hero</numIndex></numIndex>
+                                <numIndex index="6"><numIndex index="0">Zitat-Karte</numIndex><numIndex index="1">quote</numIndex></numIndex>
+                                <numIndex index="7"><numIndex index="0">Karussell</numIndex><numIndex index="1">carousel</numIndex></numIndex>
+                                <numIndex index="8"><numIndex index="0">Wall of Love</numIndex><numIndex index="1">wall</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </variant>
+                    <position>
+                        <label>Bildschirmposition (nur Floating-Badge)</label>
+                        <displayCond>FIELD:variant:=:floating</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default>bottom-right</default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">unten rechts</numIndex><numIndex index="1">bottom-right</numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">unten links</numIndex><numIndex index="1">bottom-left</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">oben rechts</numIndex><numIndex index="1">top-right</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">oben links</numIndex><numIndex index="1">top-left</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">inline (an dieser Stelle)</numIndex><numIndex index="1">inline</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </position>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
