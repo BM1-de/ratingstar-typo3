@@ -1,0 +1,17 @@
+categories:
+  ratingstar:
+    label: 'RatingStar Seal'
+
+settings:
+  ratingstar.slug:
+    label: 'Profil-Slug'
+    description: 'Slug der RatingStar-Filiale – der Teil hinter ratingstar.de/t/ (z. B. "meine-filiale").'
+    type: string
+    default: ''
+    category: ratingstar
+  ratingstar.key:
+    label: 'Embed-Key'
+    description: 'Embed-/API-Key der Filiale aus dem RatingStar-Dashboard.'
+    type: string
+    default: ''
+    category: ratingstar
