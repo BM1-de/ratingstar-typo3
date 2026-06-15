@@ -48,4 +48,29 @@ defined('TYPO3') or die();
         'FILE:EXT:ratingstar_seal/Configuration/FlexForms/Seal.xml',
         $cType,
     );
+
+    // Second CType: server-side Google-stars JSON-LD, for targeted per-page
+    // placement (alternative to the site-wide middleware injection). No options.
+    $jsonLdType = 'ratingstar_jsonld';
+    ExtensionManagementUtility::addTcaSelectItem(
+        'tt_content',
+        'CType',
+        [
+            'label' => $ll . 'ce.jsonld.title',
+            'description' => $ll . 'ce.jsonld.description',
+            'value' => $jsonLdType,
+            'icon' => 'ratingstar-seal',
+            'group' => 'default',
+        ],
+    );
+    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$jsonLdType] = 'ratingstar-seal';
+    $GLOBALS['TCA']['tt_content']['types'][$jsonLdType] = [
+        'showitem' => '
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                --palette--;;general,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                --palette--;;hidden,
+                --palette--;;access,
+        ',
+    ];
 })();

@@ -35,7 +35,9 @@ final class SealViewHelper extends AbstractViewHelper
 
     public function render(): string
     {
-        $slug = trim((string)($this->arguments['slug'] ?? '')) ?: $this->resolveSlugFromSite();
+        $settings = $this->resolveSettings();
+
+        $slug = trim((string)($this->arguments['slug'] ?? '')) ?: ($settings?->slug ?? '');
         if ($slug === '') {
             return '';
         }
@@ -44,9 +46,10 @@ final class SealViewHelper extends AbstractViewHelper
         $position = trim((string)($this->arguments['position'] ?? ''));
 
         // Load seal.js once per page – only because a seal is actually rendered.
+        // URL is built from the configured base origin (default ratingstar.de).
         GeneralUtility::makeInstance(AssetCollector::class)->addJavaScript(
             'ratingstar_seal',
-            'https://ratingstar.de/seal.js',
+            $settings?->sealJsUrl() ?? (SealSettings::DEFAULT_BASE_URL . '/seal.js'),
             ['async' => 'async'],
             ['external' => true],
         );
@@ -60,6 +63,14 @@ final class SealViewHelper extends AbstractViewHelper
             $attributes['data-position'] = $position;
         }
 
+        // Single-block rule (CONTRACT #7): when the site serves JSON-LD itself
+        // (site-wide middleware or a <rs:jsonld> element), every .rs-seal must
+        // carry data-no-richsnippet so seal.js suppresses its own client-side
+        // rich snippet – exactly one JSON-LD block per page.
+        if ($settings !== null && $settings->jsonLdEnabled && $settings->key !== '') {
+            $attributes['data-no-richsnippet'] = '1';
+        }
+
         $markup = '<div';
         foreach ($attributes as $name => $value) {
             $markup .= ' ' . $name . '="' . htmlspecialchars((string)$value, ENT_QUOTES) . '"';
@@ -68,15 +79,15 @@ final class SealViewHelper extends AbstractViewHelper
         return $markup . '></div>';
     }
 
-    private function resolveSlugFromSite(): string
+    private function resolveSettings(): ?SealSettings
     {
         $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         if (!$request instanceof ServerRequestInterface) {
-            return '';
+            return null;
         }
 
         $site = $request->getAttribute('site');
 
-        return $site instanceof Site ? SealSettings::fromSite($site)->slug : '';
+        return $site instanceof Site ? SealSettings::fromSite($site) : null;
     }
 }
