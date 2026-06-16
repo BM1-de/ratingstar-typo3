@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="de" datatype="plaintext" original="EXT:ratingstar_seal/Resources/Private/Language/locallang_db.xlf" product-name="ratingstar_seal">
+        <header/>
+        <body>
+            <trans-unit id="ce.seal.title">
+                <source>RatingStar Siegel</source>
+            </trans-unit>
+            <trans-unit id="ce.seal.description">
+                <source>Bindet das RatingStar-Siegel bzw. die Google-Sterne der konfigurierten Filiale ein. Variante im Element wählen; Profil-Slug kommt aus den Site Settings.</source>
+            </trans-unit>
+            <trans-unit id="ce.jsonld.title">
+                <source>RatingStar Google-Sterne</source>
+            </trans-unit>
+            <trans-unit id="ce.jsonld.description">
+                <source>Gibt das serverseitige JSON-LD (LocalBusiness/AggregateRating) der Filiale an dieser Stelle aus — für Rich Snippets in der Google-Suche. Alternative zur site-weiten Ausgabe; Key kommt aus den Site Settings.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

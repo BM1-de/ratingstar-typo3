@@ -1,0 +1,29 @@
+categories:
+  ratingstar:
+    label: 'RatingStar Seal'
+
+settings:
+  ratingstar.slug:
+    label: 'Profil-Slug'
+    description: 'Slug der RatingStar-Filiale – der Teil hinter ratingstar.de/t/ (z. B. "meine-filiale").'
+    type: string
+    default: ''
+    category: ratingstar
+  ratingstar.key:
+    label: 'Embed-Key'
+    description: 'Embed-/API-Key der Filiale aus dem RatingStar-Dashboard. Treibt das serverseitige JSON-LD (Google-Sterne).'
+    type: string
+    default: ''
+    category: ratingstar
+  ratingstar.baseUrl:
+    label: 'Basis-URL (RatingStar-Instanz)'
+    description: 'Origin, aus der alle URLs gebaut werden. Standard: https://ratingstar.de. Nur für Staging/Self-Hosted ändern.'
+    type: string
+    default: 'https://ratingstar.de'
+    category: ratingstar
+  ratingstar.jsonLdEnabled:
+    label: 'Google-Sterne (JSON-LD) site-weit ausgeben'
+    description: 'Bettet das serverseitige LocalBusiness/AggregateRating-Snippet automatisch in den Head jeder Seite ein. Für gezielte Platzierung stattdessen das Content-Element „RatingStar Google-Sterne" nutzen.'
+    type: bool
+    default: true
+    category: ratingstar
