@@ -1,47 +1,440 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Per-Embed-Optionen des RatingStar-Siegels. Die Felder bilden exakt die
+    von seal.js whitelisteten EMBED_OVERRIDES ab (CONTRACT §17) und werden
+    als data-*-Attribute ausgegeben. Jedes Feld steht auf „Standard" (leer)
+    = keine Ausgabe, dann gilt die zentrale Konfiguration aus dem
+    RatingStar-Dashboard („Siegel & Widgets"). Werte-Validierung übernimmt
+    seal.js (Ranges/Enums, ungültige Werte fallen still auf den Standard).
+-->
 <T3DataStructure>
     <sheets>
         <sDEF>
             <ROOT>
+                <sheetTitle>Siegel</sheetTitle>
                 <type>array</type>
                 <el>
                     <variant>
                         <label>Variante</label>
+                        <description>Statische Siegel laufen in jedem Tarif; Live-Widgets (Profil-Karte bis Footer-Bar) ab 4-Star — darunter degradiert seal.js automatisch auf die Banderole.</description>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
-                            <default>banner</default>
+                            <default>seal-circle-banner</default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Banderole</numIndex><numIndex index="1">banner</numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Rundsiegel</numIndex><numIndex index="1">circle</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Trust-Bar</numIndex><numIndex index="1">bar</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">Profilkarte</numIndex><numIndex index="1">profile-card</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">Floating-Badge</numIndex><numIndex index="1">floating</numIndex></numIndex>
-                                <numIndex index="5"><numIndex index="0">Hero-Snippet</numIndex><numIndex index="1">hero</numIndex></numIndex>
-                                <numIndex index="6"><numIndex index="0">Zitat-Karte</numIndex><numIndex index="1">quote</numIndex></numIndex>
-                                <numIndex index="7"><numIndex index="0">Karussell</numIndex><numIndex index="1">carousel</numIndex></numIndex>
-                                <numIndex index="8"><numIndex index="0">Wall of Love</numIndex><numIndex index="1">wall</numIndex></numIndex>
+                                <numIndex index="0"><numIndex index="0">Banderole</numIndex><numIndex index="1">seal-circle-banner</numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Rundsiegel</numIndex><numIndex index="1">seal-circle</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Profil-Karte</numIndex><numIndex index="1">profile-card</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">Trust-Bar</numIndex><numIndex index="1">bar</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">Hero-Snippet</numIndex><numIndex index="1">hero</numIndex></numIndex>
+                                <numIndex index="5"><numIndex index="0">Featured Quote</numIndex><numIndex index="1">quote</numIndex></numIndex>
+                                <numIndex index="6"><numIndex index="0">Carousel</numIndex><numIndex index="1">carousel</numIndex></numIndex>
+                                <numIndex index="7"><numIndex index="0">Wall of Love</numIndex><numIndex index="1">wall</numIndex></numIndex>
+                                <numIndex index="8"><numIndex index="0">Footer-Bar</numIndex><numIndex index="1">footer-bar</numIndex></numIndex>
                             </items>
                         </config>
                     </variant>
                     <position>
-                        <label>Bildschirmposition (nur Floating-Badge)</label>
-                        <displayCond>FIELD:variant:=:floating</displayCond>
+                        <label>Bildschirmposition (nur Profil-Karte)</label>
+                        <description>„inline" rendert die Karte an dieser Stelle im Inhalt, die Ecken-Optionen lassen sie schwebend am Bildschirmrand kleben (früher „Floating-Badge").</description>
+                        <displayCond>FIELD:variant:=:profile-card</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
-                            <default>bottom-right</default>
+                            <default>inline</default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">unten rechts</numIndex><numIndex index="1">bottom-right</numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">unten links</numIndex><numIndex index="1">bottom-left</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">oben rechts</numIndex><numIndex index="1">top-right</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">oben links</numIndex><numIndex index="1">top-left</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">inline (an dieser Stelle)</numIndex><numIndex index="1">inline</numIndex></numIndex>
+                                <numIndex index="0"><numIndex index="0">inline (an dieser Stelle)</numIndex><numIndex index="1">inline</numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">unten rechts</numIndex><numIndex index="1">bottom-right</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">unten links</numIndex><numIndex index="1">bottom-left</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">oben rechts</numIndex><numIndex index="1">top-right</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">oben links</numIndex><numIndex index="1">top-left</numIndex></numIndex>
                             </items>
                         </config>
                     </position>
+                    <dataAttributes>
+                        <label>Weitere data-Attribute (Experten)</label>
+                        <description>Zusätzliche per-Embed-Attribute, z. B. aus dem Embed-Code des Dashboard-Generators kopiert (data-size="240" …). Überschreibt gleichnamige Feld-Einstellungen; unbekannte oder ungültige Werte ignoriert seal.js.</description>
+                        <config>
+                            <type>text</type>
+                            <rows>2</rows>
+                        </config>
+                    </dataAttributes>
                 </el>
             </ROOT>
         </sDEF>
+        <sStatic>
+            <ROOT>
+                <sheetTitle>Siegel-Optionen</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:IN:seal-circle,seal-circle-banner</displayCond>
+                <type>array</type>
+                <el>
+                    <size>
+                        <label>Größe (px)</label>
+                        <description>Anzeigebreite des statischen Siegels, 120–320 px. Leer = Standard aus dem Dashboard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </size>
+                </el>
+            </ROOT>
+        </sStatic>
+        <sPc>
+            <ROOT>
+                <sheetTitle>Profil-Karte</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:=:profile-card</displayCond>
+                <type>array</type>
+                <el>
+                    <pcWidth>
+                        <label>Breite (px)</label>
+                        <description>100–215 px. Leer = Standard aus dem Dashboard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </pcWidth>
+                    <pcColor>
+                        <label>Kartenfarbe</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Gold (creme)</numIndex><numIndex index="1">gold</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Silber (grau)</numIndex><numIndex index="1">silber</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">Weiß</numIndex><numIndex index="1">weiss</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </pcColor>
+                    <pcShowCount>
+                        <label>Bewertungsanzahl zeigen</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </pcShowCount>
+                </el>
+            </ROOT>
+        </sPc>
+        <sBar>
+            <ROOT>
+                <sheetTitle>Trust-Bar</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:=:bar</displayCond>
+                <type>array</type>
+                <el>
+                    <barShowCount>
+                        <label>Bewertungsanzahl zeigen</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </barShowCount>
+                    <barShowVerified>
+                        <label>Verifiziert-Hinweis zeigen</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </barShowVerified>
+                </el>
+            </ROOT>
+        </sBar>
+        <sHero>
+            <ROOT>
+                <sheetTitle>Hero-Snippet</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:=:hero</displayCond>
+                <type>array</type>
+                <el>
+                    <heroShowCount>
+                        <label>Bewertungsanzahl zeigen</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </heroShowCount>
+                    <heroShowVerified>
+                        <label>Verifiziert-Hinweis zeigen</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </heroShowVerified>
+                </el>
+            </ROOT>
+        </sHero>
+        <sQuote>
+            <ROOT>
+                <sheetTitle>Featured Quote</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:=:quote</displayCond>
+                <type>array</type>
+                <el>
+                    <quotePick>
+                        <label>Zitat-Auswahl</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Beste Bewertung</numIndex><numIndex index="1">best</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Neueste Bewertung</numIndex><numIndex index="1">newest</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">Rotierend</numIndex><numIndex index="1">rotate</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">Manuell (im Dashboard gewählt)</numIndex><numIndex index="1">manual</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </quotePick>
+                    <quoteWidth>
+                        <label>Breite</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">S</numIndex><numIndex index="1">s</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">M</numIndex><numIndex index="1">m</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">L</numIndex><numIndex index="1">l</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">Volle Breite</numIndex><numIndex index="1">full</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </quoteWidth>
+                </el>
+            </ROOT>
+        </sQuote>
+        <sCarousel>
+            <ROOT>
+                <sheetTitle>Carousel</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:=:carousel</displayCond>
+                <type>array</type>
+                <el>
+                    <carCount>
+                        <label>Anzahl Bewertungen</label>
+                        <description>3–20. Leer = Standard aus dem Dashboard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </carCount>
+                    <carRotate>
+                        <label>Rotation (Sekunden)</label>
+                        <description>0–30, 0 = keine automatische Rotation. Leer = Standard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </carRotate>
+                    <carMin>
+                        <label>Mindest-Sterne</label>
+                        <description>1–5. Leer = Standard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </carMin>
+                    <carWidth>
+                        <label>Breite</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">S</numIndex><numIndex index="1">s</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">M</numIndex><numIndex index="1">m</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">L</numIndex><numIndex index="1">l</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">Volle Breite</numIndex><numIndex index="1">full</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </carWidth>
+                </el>
+            </ROOT>
+        </sCarousel>
+        <sWall>
+            <ROOT>
+                <sheetTitle>Wall of Love</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:=:wall</displayCond>
+                <type>array</type>
+                <el>
+                    <wallCols>
+                        <label>Spalten</label>
+                        <description>2–4. Leer = Standard aus dem Dashboard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </wallCols>
+                    <wallTotal>
+                        <label>Anzahl Bewertungen</label>
+                        <description>2–50. Leer = Standard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </wallTotal>
+                    <wallMin>
+                        <label>Mindest-Sterne</label>
+                        <description>1–5. Leer = Standard.</description>
+                        <config>
+                            <type>input</type>
+                            <size>10</size>
+                            <placeholder>Standard</placeholder>
+                        </config>
+                    </wallMin>
+                    <wallSort>
+                        <label>Sortierung</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Neueste zuerst</numIndex><numIndex index="1">newest</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Beste zuerst</numIndex><numIndex index="1">best</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">Gemischt</numIndex><numIndex index="1">mix</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </wallSort>
+                    <wallWidth>
+                        <label>Breite</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">M</numIndex><numIndex index="1">m</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">L</numIndex><numIndex index="1">l</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">XL</numIndex><numIndex index="1">xl</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">Volle Breite</numIndex><numIndex index="1">full</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </wallWidth>
+                </el>
+            </ROOT>
+        </sWall>
+        <sFooterBar>
+            <ROOT>
+                <sheetTitle>Footer-Bar</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:=:footer-bar</displayCond>
+                <type>array</type>
+                <el>
+                    <footerBarPosition>
+                        <label>Position</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Am Bildschirmrand fixiert</numIndex><numIndex index="1">fixed</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Im Seitenfluss (inline)</numIndex><numIndex index="1">inline</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </footerBarPosition>
+                    <footerBarBg>
+                        <label>Hintergrundfarbe</label>
+                        <description>Leer = Standard aus dem Dashboard.</description>
+                        <config>
+                            <type>color</type>
+                            <required>0</required>
+                        </config>
+                    </footerBarBg>
+                    <footerBarText>
+                        <label>Schriftfarbe</label>
+                        <config>
+                            <type>color</type>
+                            <required>0</required>
+                        </config>
+                    </footerBarText>
+                    <footerBarLinkColor>
+                        <label>Linkfarbe</label>
+                        <config>
+                            <type>color</type>
+                            <required>0</required>
+                        </config>
+                    </footerBarLinkColor>
+                    <footerBarLinkHover>
+                        <label>Linkfarbe (Hover)</label>
+                        <config>
+                            <type>color</type>
+                            <required>0</required>
+                        </config>
+                    </footerBarLinkHover>
+                </el>
+            </ROOT>
+        </sFooterBar>
+        <sReviews>
+            <ROOT>
+                <sheetTitle>Bewertungs-Filter</sheetTitle>
+                <displayCond>FIELD:sDEF.variant:IN:profile-card,quote,carousel,wall</displayCond>
+                <type>array</type>
+                <el>
+                    <reviewsOnlyNamed>
+                        <label>Nur Bewertungen mit Namen</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </reviewsOnlyNamed>
+                    <reviewsOnlyWithComment>
+                        <label>Nur Bewertungen mit Kommentar</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </reviewsOnlyWithComment>
+                </el>
+            </ROOT>
+        </sReviews>
     </sheets>
 </T3DataStructure>

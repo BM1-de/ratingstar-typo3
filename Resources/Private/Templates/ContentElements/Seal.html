@@ -1,4 +1,19 @@
 <html xmlns:rs="http://typo3.org/ns/RatingStar/Seal/ViewHelpers"
       data-namespace-typo3-fluid="true">
-<rs:seal variant="{flexform.variant}" position="{flexform.position}"/>
+<f:comment><!--
+    Header wie bei jedem Standard-Inhaltselement: header_layout 1-5 = h1-h5,
+    leer/0 = h2, 100 = verborgen; header_link wird als Link gerendert.
+    Der Inhalt landet escaped in der Variable, daher unten format.raw.
+--></f:comment>
+<f:if condition="{data.header} && {data.header_layout} != 100">
+    <f:variable name="headerContent"><f:if condition="{data.header_link}"><f:then><f:link.typolink parameter="{data.header_link}">{data.header}</f:link.typolink></f:then><f:else>{data.header}</f:else></f:if></f:variable>
+    <f:switch expression="{data.header_layout}">
+        <f:case value="1"><h1>{headerContent -> f:format.raw()}</h1></f:case>
+        <f:case value="3"><h3>{headerContent -> f:format.raw()}</h3></f:case>
+        <f:case value="4"><h4>{headerContent -> f:format.raw()}</h4></f:case>
+        <f:case value="5"><h5>{headerContent -> f:format.raw()}</h5></f:case>
+        <f:defaultCase><h2>{headerContent -> f:format.raw()}</h2></f:defaultCase>
+    </f:switch>
+</f:if>
+<rs:seal variant="{flexform.variant}" position="{flexform.position}" overrides="{flexform}" dataAttributes="{flexform.dataAttributes}"/>
 </html>

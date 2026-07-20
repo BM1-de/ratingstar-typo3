@@ -1,6 +1,7 @@
 {
     "name": "ratingstar/typo3-seal",
     "type": "typo3-cms-extension",
+    "version": "1.0.0",
     "description": "RatingStar-Siegel und Google-Sterne (Rich Snippets) einer RatingStar-Filiale für TYPO3.",
     "keywords": [
         "TYPO3 CMS",

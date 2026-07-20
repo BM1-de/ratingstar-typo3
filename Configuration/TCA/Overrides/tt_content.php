@@ -19,26 +19,35 @@ defined('TYPO3') or die();
             'description' => $ll . 'ce.seal.description',
             'value' => $cType,
             'icon' => 'ratingstar-seal',
-            'group' => 'default',
+            'group' => 'special',
         ],
     );
 
     // Type icon for the content element.
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$cType] = 'ratingstar-seal';
 
-    // Field layout for the new CType: general tab with the FlexForm, plus the
-    // standard appearance and access tabs.
+    // Field layout for the new CType: the full standard content element
+    // anatomy (headers, appearance, language, access, categories, notes)
+    // with the FlexForm on the general tab.
     $GLOBALS['TCA']['tt_content']['types'][$cType] = [
         'showitem' => '
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;general,
+                --palette--;;headers,
                 pi_flexform,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:appearance,
                 --palette--;;frames,
                 --palette--;;appearanceLinks,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                --palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 --palette--;;hidden,
                 --palette--;;access,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                categories,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                rowDescription,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         ',
     ];
 
@@ -60,17 +69,24 @@ defined('TYPO3') or die();
             'description' => $ll . 'ce.jsonld.description',
             'value' => $jsonLdType,
             'icon' => 'ratingstar-seal',
-            'group' => 'default',
+            'group' => 'special',
         ],
     );
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$jsonLdType] = 'ratingstar-seal';
+    // Invisible element (renders a <script type="application/ld+json"> only),
+    // so headers/appearance stay out on purpose — but language, access and
+    // notes belong to a complete authoring form.
     $GLOBALS['TCA']['tt_content']['types'][$jsonLdType] = [
         'showitem' => '
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;general,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                --palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 --palette--;;hidden,
                 --palette--;;access,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                rowDescription,
         ',
     ];
 })();
