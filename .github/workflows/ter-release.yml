@@ -1,0 +1,54 @@
+# Publishes the extension to the TYPO3 Extension Repository (TER) whenever a
+# release tag (x.y.z) is pushed. The version must match composer.json and
+# ext_emconf.php (kept in sync by the release process); the annotated tag
+# message becomes the TER release comment.
+#
+# The package is built via `git archive` (respects .gitattributes
+# export-ignore) and uploaded with typo3/tailor from an extracted directory —
+# deliberately NOT via --artefact with a git-archive ZIP (tailor treats the
+# first folder entry as a GitHub wrapper directory).
+#
+# Requires the repository secret TYPO3_API_TOKEN (extensions.typo3.org token).
+name: TER release
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      TYPO3_API_TOKEN: ${{ secrets.TYPO3_API_TOKEN }}
+      TYPO3_EXTENSION_KEY: ratingstar_seal
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-tags: true
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Install tailor
+        run: composer global require typo3/tailor --no-interaction --no-progress
+
+      - name: Check version consistency
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          grep -q "'version' => '${VERSION}'" ext_emconf.php || { echo "ext_emconf.php version does not match tag ${VERSION}"; exit 1; }
+          grep -q "\"version\": \"${VERSION}\"" composer.json || { echo "composer.json version does not match tag ${VERSION}"; exit 1; }
+
+      - name: Build package (git archive, export-ignore applies)
+        run: |
+          mkdir -p /tmp/pkg
+          git archive "${GITHUB_REF_NAME}" | tar -x -C /tmp/pkg
+
+      - name: Publish to TER
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          COMMENT="$(git for-each-ref "refs/tags/${VERSION}" --format='%(contents:subject)')"
+          [ -z "${COMMENT}" ] && COMMENT="Release ${VERSION}"
+          ~/.composer/vendor/bin/tailor ter:publish "${VERSION}" "${TYPO3_EXTENSION_KEY}" --path=/tmp/pkg --comment "${COMMENT}"
