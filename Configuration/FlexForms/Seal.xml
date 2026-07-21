@@ -122,6 +122,21 @@
                             </items>
                         </config>
                     </pcShowCount>
+                    <pcMobile>
+                        <label>Mobil-Ansicht (schwebendes Siegel)</label>
+                        <description>Unter 640 px Bildschirmbreite: kompakte Pille statt großer Karte, ganz ausblenden oder unverändert lassen. Gilt nur für die schwebende Position.</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Kompakte Pille</numIndex><numIndex index="1">compact</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Ausblenden</numIndex><numIndex index="1">hide</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">Karte unverändert</numIndex><numIndex index="1">full</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </pcMobile>
                 </el>
             </ROOT>
         </sPc>
