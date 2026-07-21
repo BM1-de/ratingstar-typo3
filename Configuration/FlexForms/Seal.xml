@@ -137,6 +137,19 @@
                             </items>
                         </config>
                     </pcMobile>
+                    <pcClick>
+                        <label>Klick auf die Karte</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Bewertungs-Vorschau öffnen</numIndex><numIndex index="1">overlay</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Direkt zum Profil</numIndex><numIndex index="1">profile</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </pcClick>
                 </el>
             </ROOT>
         </sPc>

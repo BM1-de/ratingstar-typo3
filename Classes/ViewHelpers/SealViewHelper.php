@@ -57,7 +57,7 @@ final class SealViewHelper extends AbstractViewHelper
      */
     private const OVERRIDE_KEYS = [
         'size',
-        'pcPosition', 'pcWidth', 'pcShowCount', 'pcColor', 'pcMobile',
+        'pcPosition', 'pcWidth', 'pcShowCount', 'pcColor', 'pcMobile', 'pcClick',
         'barShowCount', 'barShowVerified',
         'heroShowCount', 'heroShowVerified',
         'quotePick', 'quoteWidth',
