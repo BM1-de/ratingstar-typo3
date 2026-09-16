@@ -1,8 +1,10 @@
 # RatingStar für TYPO3 (`ratingstar_seal`)
 
-Bindet das **RatingStar-Siegel** und die **Google-Sterne** (Rich Snippets /
-`AggregateRating`) einer [RatingStar](https://ratingstar.de)-Filiale in eine
-TYPO3-Website ein.
+[RatingStar](https://ratingstar.de) ist das Bewertungstool für Unternehmen:
+Kundenbewertungen sammeln, Bewertungen aus Google und anderen Portalen bündeln
+und alles auf der eigenen Website zeigen. Diese Extension bringt das nach
+TYPO3 — **Siegel und Bewertungs-Widgets** in allen neun Varianten sowie die
+**Google-Sterne** (Rich Snippets / `AggregateRating`) einer RatingStar-Filiale.
 
 TYPO3 extension `ratingstar_seal` · Composer `ratingstar/typo3-seal` ·
 TYPO3 v13 + v14 · GPL-2.0-or-later
