@@ -14,13 +14,15 @@ TYPO3 v13 + v14 · GPL-2.0-or-later
 - **Extension-Konfiguration:** RatingStar-Profil-Slug + Embed-Key, pro Site
   konfigurierbar (Site Settings, Set `ratingstar/seal`)
 - **Siegel-Widget — alle Varianten:** Banderole, Rundsiegel, Profil-Karte
-  (inline oder schwebend in einer Bildschirmecke), Trust-Bar, Hero-Snippet,
-  Featured Quote, Carousel, Wall of Love, Footer-Bar — als Content-Element
-  und als Fluid-ViewHelper `<rs:seal>`
+  (inline oder schwebend in einer Bildschirmecke), Bewertungsleiste,
+  Gesamtnote, Zitat, Karussell, Bewertungswand, Fußleiste — als
+  Content-Element und als Fluid-ViewHelper `<rs:seal>`; Bewertungsleiste,
+  Gesamtnote, Zitat, Karussell und Bewertungswand wahlweise hell oder dunkel
+  (Feld „Darstellung", Attribut `data-theme`)
 - **Per-Embed-Optik:** alle von `seal.js` unterstützten Optionen
   (`EMBED_OVERRIDES`) direkt im Content-Element — je Variante ein eigener
   Formular-Tab (Größe, Breite, Kartenfarbe, Anzahl, Rotation, Sortierung,
-  Footer-Bar-Farben, Bewertungs-Filter …). Jedes Feld steht auf „Standard
+  Fußleisten-Farben, Bewertungs-Filter …). Jedes Feld steht auf „Standard
   (aus Dashboard)" und wird nur ausgegeben, wenn es bewusst gesetzt ist —
   die zentrale Konfiguration bleibt führend. Dieselbe Variante kann so
   mehrfach pro Seite mit unterschiedlichen Einstellungen eingebunden werden.

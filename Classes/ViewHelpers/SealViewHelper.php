@@ -65,6 +65,7 @@ final class SealViewHelper extends AbstractViewHelper
         'wallCols', 'wallTotal', 'wallMin', 'wallSort', 'wallWidth',
         'footerBarBg', 'footerBarText', 'footerBarLinkColor', 'footerBarLinkHover', 'footerBarPosition',
         'reviewsOnlyNamed', 'reviewsOnlyWithComment',
+        'theme',
     ];
 
     public function initializeArguments(): void

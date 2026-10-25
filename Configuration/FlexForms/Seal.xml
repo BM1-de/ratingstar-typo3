@@ -16,7 +16,7 @@
                 <el>
                     <variant>
                         <label>Variante</label>
-                        <description>Statische Siegel laufen in jedem Tarif; Live-Widgets (Profil-Karte bis Footer-Bar) ab 4-Star — darunter degradiert seal.js automatisch auf die Banderole.</description>
+                        <description>Statische Siegel laufen in jedem Tarif; Live-Widgets (Profil-Karte bis Fußleiste) ab 4-Star — darunter degradiert seal.js automatisch auf die Banderole.</description>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
@@ -25,12 +25,12 @@
                                 <numIndex index="0"><numIndex index="0">Banderole</numIndex><numIndex index="1">seal-circle-banner</numIndex></numIndex>
                                 <numIndex index="1"><numIndex index="0">Rundsiegel</numIndex><numIndex index="1">seal-circle</numIndex></numIndex>
                                 <numIndex index="2"><numIndex index="0">Profil-Karte</numIndex><numIndex index="1">profile-card</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">Trust-Bar</numIndex><numIndex index="1">bar</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">Hero-Snippet</numIndex><numIndex index="1">hero</numIndex></numIndex>
-                                <numIndex index="5"><numIndex index="0">Featured Quote</numIndex><numIndex index="1">quote</numIndex></numIndex>
-                                <numIndex index="6"><numIndex index="0">Carousel</numIndex><numIndex index="1">carousel</numIndex></numIndex>
-                                <numIndex index="7"><numIndex index="0">Wall of Love</numIndex><numIndex index="1">wall</numIndex></numIndex>
-                                <numIndex index="8"><numIndex index="0">Footer-Bar</numIndex><numIndex index="1">footer-bar</numIndex></numIndex>
+                                <numIndex index="3"><numIndex index="0">Bewertungsleiste</numIndex><numIndex index="1">bar</numIndex></numIndex>
+                                <numIndex index="4"><numIndex index="0">Gesamtnote</numIndex><numIndex index="1">hero</numIndex></numIndex>
+                                <numIndex index="5"><numIndex index="0">Zitat</numIndex><numIndex index="1">quote</numIndex></numIndex>
+                                <numIndex index="6"><numIndex index="0">Karussell</numIndex><numIndex index="1">carousel</numIndex></numIndex>
+                                <numIndex index="7"><numIndex index="0">Bewertungswand</numIndex><numIndex index="1">wall</numIndex></numIndex>
+                                <numIndex index="8"><numIndex index="0">Fußleiste</numIndex><numIndex index="1">footer-bar</numIndex></numIndex>
                             </items>
                         </config>
                     </variant>
@@ -51,6 +51,21 @@
                             </items>
                         </config>
                     </position>
+                    <theme>
+                        <label>Darstellung</label>
+                        <description>„Dunkel" passt Bewertungsleiste, Gesamtnote, Zitat, Karussell und Bewertungswand an dunkle Seitenhintergründe an.</description>
+                        <displayCond>FIELD:variant:IN:bar,hero,quote,carousel,wall</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items>
+                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
+                                <numIndex index="1"><numIndex index="0">Hell</numIndex><numIndex index="1">light</numIndex></numIndex>
+                                <numIndex index="2"><numIndex index="0">Dunkel</numIndex><numIndex index="1">dark</numIndex></numIndex>
+                            </items>
+                        </config>
+                    </theme>
                     <dataAttributes>
                         <label>Weitere data-Attribute (Experten)</label>
                         <description>Zusätzliche per-Embed-Attribute, z. B. aus dem Embed-Code des Dashboard-Generators kopiert (data-size="240" …). Überschreibt gleichnamige Feld-Einstellungen; unbekannte oder ungültige Werte ignoriert seal.js.</description>
@@ -155,7 +170,7 @@
         </sPc>
         <sBar>
             <ROOT>
-                <sheetTitle>Trust-Bar</sheetTitle>
+                <sheetTitle>Bewertungsleiste</sheetTitle>
                 <displayCond>FIELD:sDEF.variant:=:bar</displayCond>
                 <type>array</type>
                 <el>
@@ -190,7 +205,7 @@
         </sBar>
         <sHero>
             <ROOT>
-                <sheetTitle>Hero-Snippet</sheetTitle>
+                <sheetTitle>Gesamtnote</sheetTitle>
                 <displayCond>FIELD:sDEF.variant:=:hero</displayCond>
                 <type>array</type>
                 <el>
@@ -225,7 +240,7 @@
         </sHero>
         <sQuote>
             <ROOT>
-                <sheetTitle>Featured Quote</sheetTitle>
+                <sheetTitle>Zitat</sheetTitle>
                 <displayCond>FIELD:sDEF.variant:=:quote</displayCond>
                 <type>array</type>
                 <el>
@@ -264,7 +279,7 @@
         </sQuote>
         <sCarousel>
             <ROOT>
-                <sheetTitle>Carousel</sheetTitle>
+                <sheetTitle>Karussell</sheetTitle>
                 <displayCond>FIELD:sDEF.variant:=:carousel</displayCond>
                 <type>array</type>
                 <el>
@@ -315,7 +330,7 @@
         </sCarousel>
         <sWall>
             <ROOT>
-                <sheetTitle>Wall of Love</sheetTitle>
+                <sheetTitle>Bewertungswand</sheetTitle>
                 <displayCond>FIELD:sDEF.variant:=:wall</displayCond>
                 <type>array</type>
                 <el>
@@ -380,7 +395,7 @@
         </sWall>
         <sFooterBar>
             <ROOT>
-                <sheetTitle>Footer-Bar</sheetTitle>
+                <sheetTitle>Fußleiste</sheetTitle>
                 <displayCond>FIELD:sDEF.variant:=:footer-bar</displayCond>
                 <type>array</type>
                 <el>
