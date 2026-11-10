@@ -36,18 +36,18 @@
                     </variant>
                     <position>
                         <label>Bildschirmposition (nur Profil-Karte)</label>
-                        <description>„inline" rendert die Karte an dieser Stelle im Inhalt, die Ecken-Optionen lassen sie schwebend am Bildschirmrand kleben (früher „Floating-Badge").</description>
+                        <description>Die Ecken-Optionen lassen die Karte schwebend am Bildschirmrand kleben (Standard: unten rechts), „inline" rendert sie an dieser Stelle im Inhalt.</description>
                         <displayCond>FIELD:variant:=:profile-card</displayCond>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
-                            <default>inline</default>
+                            <default>bottom-right</default>
                             <items>
-                                <numIndex index="0"><label>inline (an dieser Stelle)</label><value>inline</value></numIndex>
-                                <numIndex index="1"><label>unten rechts</label><value>bottom-right</value></numIndex>
-                                <numIndex index="2"><label>unten links</label><value>bottom-left</value></numIndex>
-                                <numIndex index="3"><label>oben rechts</label><value>top-right</value></numIndex>
-                                <numIndex index="4"><label>oben links</label><value>top-left</value></numIndex>
+                                <numIndex index="0"><label>unten rechts</label><value>bottom-right</value></numIndex>
+                                <numIndex index="1"><label>unten links</label><value>bottom-left</value></numIndex>
+                                <numIndex index="2"><label>oben rechts</label><value>top-right</value></numIndex>
+                                <numIndex index="3"><label>oben links</label><value>top-left</value></numIndex>
+                                <numIndex index="4"><label>inline (an dieser Stelle)</label><value>inline</value></numIndex>
                             </items>
                         </config>
                     </position>
