@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RatingStar\Seal\Service;
 
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Http\RequestFactory;
 
@@ -12,12 +13,21 @@ use TYPO3\CMS\Core\Http\RequestFactory;
  * vom key-basierten RatingStar-Endpunkt und cached es. Die App baut das komplette
  * Schema selbst (inkl. Tarif-Gate) – diese Klasse ruft es ab, prüft es, kodiert
  * es für die Ausgabe in einem <script>-Block neu und puffert das Ergebnis.
+ *
+ * Fällt der Cache aus, gibt es keine Ausgabe, aber auch keinen Fehler: Die
+ * Middleware ruft diese Klasse auf jeder Frontend-Seite auf.
  */
 final class JsonLdProvider
 {
     private const CACHE_ID = 'ratingstar_seal';
     private const TTL_OK = 21600;   // 6 h – spiegelt das Cache-Control des Endpunkts
     private const TTL_FAIL = 900;   // 15 min – negativer Cache, damit Fehler nicht hämmern
+
+    /**
+     * Eintrag, mit dem vor einem Abruf geprüft wird, ob der Cache Einträge annimmt.
+     */
+    private const WRITE_PROBE_ID = 'write_probe';
+    private const WRITE_PROBE_TTL = 60;
 
     /**
      * Präfix der Cache-Einträge. "v2": Bis 1.3.0 lag unter "jsonld_" die
@@ -37,14 +47,16 @@ final class JsonLdProvider
     public function __construct(
         private readonly RequestFactory $requestFactory,
         private readonly CacheManager $cacheManager,
+        private readonly LoggerInterface $logger,
     ) {
     }
 
     /**
      * Liefert das JSON-LD-Objekt der gegebenen URL als JSON-String, der gefahrlos
      * in einen <script type="application/ld+json">-Block gesetzt werden kann –
-     * oder null, wenn der Key leer ist, der Abruf scheitert oder die Antwort kein
-     * LocalBusiness-Objekt ist. Ergebnis ~6 h gecached (Fehler 15 min).
+     * oder null, wenn der Key leer ist, der Abruf scheitert, die Antwort kein
+     * LocalBusiness-Objekt ist oder der Cache nicht nutzbar ist. Ergebnis ~6 h
+     * gecached (Fehler 15 min).
      */
     public function fetch(string $jsonLdUrl, string $key): ?string
     {
@@ -52,19 +64,48 @@ final class JsonLdProvider
             return null;
         }
 
-        $cache = $this->cacheManager->getCache(self::CACHE_ID);
         $cacheId = self::CACHE_PREFIX . md5($jsonLdUrl);
 
-        $cached = $cache->get($cacheId);
-        if (is_string($cached)) {
-            return $cached !== '' ? $cached : null;
+        // Der Cache kann ausfallen – am häufigsten, weil die Tabelle
+        // cache_ratingstar_seal fehlt (Datenbank-Schema nach der Installation nicht
+        // aktualisiert). Das darf keine Seite brechen: loggen und nichts ausgeben.
+        try {
+            $cache = $this->cacheManager->getCache(self::CACHE_ID);
+
+            $cached = $cache->get($cacheId);
+            if (is_string($cached)) {
+                return $cached !== '' ? $cached : null;
+            }
+
+            // Vor dem Abruf prüfen, dass der Cache Einträge annimmt. Ließe sich das
+            // Ergebnis nicht puffern, fragte jeder Seitenaufruf den Endpunkt ab.
+            $cache->set(self::WRITE_PROBE_ID, '1', [], self::WRITE_PROBE_TTL);
+        } catch (\Throwable $e) {
+            $this->logCacheFailure($e);
+
+            return null;
         }
 
         $json = $this->request($jsonLdUrl);
-        // Negatives Ergebnis als leeren String cachen (kürzere TTL).
-        $cache->set($cacheId, (string)$json, [], $json !== null ? self::TTL_OK : self::TTL_FAIL);
+
+        try {
+            // Negatives Ergebnis als leeren String cachen (kürzere TTL).
+            $cache->set($cacheId, (string)$json, [], $json !== null ? self::TTL_OK : self::TTL_FAIL);
+        } catch (\Throwable $e) {
+            $this->logCacheFailure($e);
+        }
 
         return $json;
+    }
+
+    private function logCacheFailure(\Throwable $e): void
+    {
+        $this->logger->error(
+            'RatingStar: the cache "' . self::CACHE_ID . '" is not usable. Without a working cache the JSON-LD '
+            . '(Google stars) is not printed. If the table cache_' . self::CACHE_ID . ' is missing, update the database schema: '
+            . '"vendor/bin/typo3 extension:setup" or "Analyze Database Structure" in the Maintenance module.',
+            ['exception' => $e],
+        );
     }
 
     private function request(string $url): ?string

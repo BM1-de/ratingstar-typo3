@@ -48,7 +48,17 @@ Beispiele:
 
 ```bash
 composer require ratingstar/typo3-seal
+vendor/bin/typo3 extension:setup
 ```
+
+**Datenbank-Schema aktualisieren (Pflicht):** `extension:setup` legt die
+Cache-Tabellen `cache_ratingstar_seal` und `cache_ratingstar_seal_tags` an, in
+denen die Extension die Google-Sterne (JSON-LD) zwischenspeichert. Ohne
+Kommandozeile geht dasselbe im Backend-Modul *Maintenance* über „Analyze
+Database Structure" (TYPO3 13: *Admin Tools → Maintenance*, TYPO3 14:
+*System → Maintenance*). Fehlen die Tabellen, gibt die Extension keine
+Google-Sterne aus und schreibt bei jedem Seitenaufruf einen Fehler ins
+TYPO3-Log; die Siegel-Widgets funktionieren trotzdem.
 
 Danach zwei Schritte je Site:
 
