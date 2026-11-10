@@ -11,8 +11,8 @@ TYPO3 v13 + v14 · GPL-2.0-or-later
 
 ## Funktionsumfang
 
-- **Extension-Konfiguration:** RatingStar-Profil-Slug + Embed-Key, pro Site
-  konfigurierbar (Site Settings, Set `ratingstar/seal`)
+- **Site Settings:** RatingStar-Profil-Slug + Embed-Key, pro Site
+  konfigurierbar (Set `ratingstar/seal`)
 - **Siegel-Widget — alle Varianten:** Banderole, Rundsiegel, Profil-Karte
   (inline oder schwebend in einer Bildschirmecke), Bewertungsleiste,
   Gesamtnote, Zitat, Karussell, Bewertungswand, Fußleiste — als
@@ -50,8 +50,28 @@ Beispiele:
 composer require ratingstar/typo3-seal
 ```
 
-Anschließend Profil-Slug und Embed-Key der Filiale in der
-Extension-Konfiguration hinterlegen.
+Danach zwei Schritte je Site:
+
+1. **Set `ratingstar/seal` als Abhängigkeit der Site eintragen (Pflicht).**
+   Ohne das Set rendern die Content-Elemente nicht. Im Backend unter
+   *Site Management → Sites* die Site bearbeiten und bei „Sets for this
+   Site" das Set „RatingStar Seal" hinzufügen — oder in
+   `config/sites/<site>/config.yaml`:
+
+   ```yaml
+   dependencies:
+     - ratingstar/seal
+   ```
+
+2. **Profil-Slug und Embed-Key der Filiale in den Site Settings hinterlegen**
+   (*Site Management → Settings*, Kategorie „RatingStar Seal") — oder in
+   `config/sites/<site>/settings.yaml`:
+
+   ```yaml
+   ratingstar:
+     slug: meine-filiale
+     key: <Embed-Key aus dem RatingStar-Dashboard>
+   ```
 
 ## Anforderungen
 

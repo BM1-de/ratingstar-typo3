@@ -7,8 +7,6 @@ tt_content.ratingstar_seal = FLUIDTEMPLATE
 tt_content.ratingstar_seal {
     templateName = Seal
     templateRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Templates/ContentElements/
-    partialRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Partials/
-    layoutRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Layouts/
     dataProcessing {
         10 = TYPO3\CMS\Frontend\DataProcessing\FlexFormProcessor
         10 {
@@ -26,6 +24,4 @@ tt_content.ratingstar_jsonld = FLUIDTEMPLATE
 tt_content.ratingstar_jsonld {
     templateName = JsonLd
     templateRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Templates/ContentElements/
-    partialRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Partials/
-    layoutRootPaths.10 = EXT:ratingstar_seal/Resources/Private/Layouts/
 }

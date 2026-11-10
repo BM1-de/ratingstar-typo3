@@ -39,14 +39,6 @@ final readonly class SealSettings
     }
 
     /**
-     * True, wenn Slug und Key gesetzt sind – die Filiale also eingebunden werden kann.
-     */
-    public function isConfigured(): bool
-    {
-        return $this->slug !== '' && $this->key !== '';
-    }
-
-    /**
      * URL des Embed-Scripts.
      */
     public function sealJsUrl(): string
@@ -61,13 +53,5 @@ final readonly class SealSettings
     public function jsonLdUrl(): string
     {
         return $this->baseUrl . '/seal/k/' . rawurlencode($this->key) . '.jsonld';
-    }
-
-    /**
-     * Öffentliche Profil-URL der Filiale.
-     */
-    public function profileUrl(): string
-    {
-        return $this->baseUrl . '/t/' . rawurlencode($this->slug);
     }
 }

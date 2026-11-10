@@ -22,15 +22,15 @@
                             <renderType>selectSingle</renderType>
                             <default>seal-circle-banner</default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Banderole</numIndex><numIndex index="1">seal-circle-banner</numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Rundsiegel</numIndex><numIndex index="1">seal-circle</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Profil-Karte</numIndex><numIndex index="1">profile-card</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">Bewertungsleiste</numIndex><numIndex index="1">bar</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">Gesamtnote</numIndex><numIndex index="1">hero</numIndex></numIndex>
-                                <numIndex index="5"><numIndex index="0">Zitat</numIndex><numIndex index="1">quote</numIndex></numIndex>
-                                <numIndex index="6"><numIndex index="0">Karussell</numIndex><numIndex index="1">carousel</numIndex></numIndex>
-                                <numIndex index="7"><numIndex index="0">Bewertungswand</numIndex><numIndex index="1">wall</numIndex></numIndex>
-                                <numIndex index="8"><numIndex index="0">Fußleiste</numIndex><numIndex index="1">footer-bar</numIndex></numIndex>
+                                <numIndex index="0"><label>Banderole</label><value>seal-circle-banner</value></numIndex>
+                                <numIndex index="1"><label>Rundsiegel</label><value>seal-circle</value></numIndex>
+                                <numIndex index="2"><label>Profil-Karte</label><value>profile-card</value></numIndex>
+                                <numIndex index="3"><label>Bewertungsleiste</label><value>bar</value></numIndex>
+                                <numIndex index="4"><label>Gesamtnote</label><value>hero</value></numIndex>
+                                <numIndex index="5"><label>Zitat</label><value>quote</value></numIndex>
+                                <numIndex index="6"><label>Karussell</label><value>carousel</value></numIndex>
+                                <numIndex index="7"><label>Bewertungswand</label><value>wall</value></numIndex>
+                                <numIndex index="8"><label>Fußleiste</label><value>footer-bar</value></numIndex>
                             </items>
                         </config>
                     </variant>
@@ -43,11 +43,11 @@
                             <renderType>selectSingle</renderType>
                             <default>inline</default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">inline (an dieser Stelle)</numIndex><numIndex index="1">inline</numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">unten rechts</numIndex><numIndex index="1">bottom-right</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">unten links</numIndex><numIndex index="1">bottom-left</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">oben rechts</numIndex><numIndex index="1">top-right</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">oben links</numIndex><numIndex index="1">top-left</numIndex></numIndex>
+                                <numIndex index="0"><label>inline (an dieser Stelle)</label><value>inline</value></numIndex>
+                                <numIndex index="1"><label>unten rechts</label><value>bottom-right</value></numIndex>
+                                <numIndex index="2"><label>unten links</label><value>bottom-left</value></numIndex>
+                                <numIndex index="3"><label>oben rechts</label><value>top-right</value></numIndex>
+                                <numIndex index="4"><label>oben links</label><value>top-left</value></numIndex>
                             </items>
                         </config>
                     </position>
@@ -60,9 +60,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Hell</numIndex><numIndex index="1">light</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Dunkel</numIndex><numIndex index="1">dark</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Hell</label><value>light</value></numIndex>
+                                <numIndex index="2"><label>Dunkel</label><value>dark</value></numIndex>
                             </items>
                         </config>
                     </theme>
@@ -117,10 +117,10 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Gold (creme)</numIndex><numIndex index="1">gold</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Silber (grau)</numIndex><numIndex index="1">silber</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">Weiß</numIndex><numIndex index="1">weiss</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Gold (creme)</label><value>gold</value></numIndex>
+                                <numIndex index="2"><label>Silber (grau)</label><value>silber</value></numIndex>
+                                <numIndex index="3"><label>Weiß</label><value>weiss</value></numIndex>
                             </items>
                         </config>
                     </pcColor>
@@ -131,9 +131,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Ja</label><value>1</value></numIndex>
+                                <numIndex index="2"><label>Nein</label><value>0</value></numIndex>
                             </items>
                         </config>
                     </pcShowCount>
@@ -145,10 +145,10 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Kompakte Pille</numIndex><numIndex index="1">compact</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Ausblenden</numIndex><numIndex index="1">hide</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">Karte unverändert</numIndex><numIndex index="1">full</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Kompakte Pille</label><value>compact</value></numIndex>
+                                <numIndex index="2"><label>Ausblenden</label><value>hide</value></numIndex>
+                                <numIndex index="3"><label>Karte unverändert</label><value>full</value></numIndex>
                             </items>
                         </config>
                     </pcMobile>
@@ -159,9 +159,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Bewertungs-Vorschau öffnen</numIndex><numIndex index="1">overlay</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Direkt zum Profil</numIndex><numIndex index="1">profile</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Bewertungs-Vorschau öffnen</label><value>overlay</value></numIndex>
+                                <numIndex index="2"><label>Direkt zum Profil</label><value>profile</value></numIndex>
                             </items>
                         </config>
                     </pcClick>
@@ -181,9 +181,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Ja</label><value>1</value></numIndex>
+                                <numIndex index="2"><label>Nein</label><value>0</value></numIndex>
                             </items>
                         </config>
                     </barShowCount>
@@ -194,9 +194,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Ja</label><value>1</value></numIndex>
+                                <numIndex index="2"><label>Nein</label><value>0</value></numIndex>
                             </items>
                         </config>
                     </barShowVerified>
@@ -216,9 +216,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Ja</label><value>1</value></numIndex>
+                                <numIndex index="2"><label>Nein</label><value>0</value></numIndex>
                             </items>
                         </config>
                     </heroShowCount>
@@ -229,9 +229,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Ja</label><value>1</value></numIndex>
+                                <numIndex index="2"><label>Nein</label><value>0</value></numIndex>
                             </items>
                         </config>
                     </heroShowVerified>
@@ -251,11 +251,11 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Beste Bewertung</numIndex><numIndex index="1">best</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Neueste Bewertung</numIndex><numIndex index="1">newest</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">Rotierend</numIndex><numIndex index="1">rotate</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">Manuell (im Dashboard gewählt)</numIndex><numIndex index="1">manual</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Beste Bewertung</label><value>best</value></numIndex>
+                                <numIndex index="2"><label>Neueste Bewertung</label><value>newest</value></numIndex>
+                                <numIndex index="3"><label>Rotierend</label><value>rotate</value></numIndex>
+                                <numIndex index="4"><label>Manuell (im Dashboard gewählt)</label><value>manual</value></numIndex>
                             </items>
                         </config>
                     </quotePick>
@@ -266,11 +266,11 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">S</numIndex><numIndex index="1">s</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">M</numIndex><numIndex index="1">m</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">L</numIndex><numIndex index="1">l</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">Volle Breite</numIndex><numIndex index="1">full</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>S</label><value>s</value></numIndex>
+                                <numIndex index="2"><label>M</label><value>m</value></numIndex>
+                                <numIndex index="3"><label>L</label><value>l</value></numIndex>
+                                <numIndex index="4"><label>Volle Breite</label><value>full</value></numIndex>
                             </items>
                         </config>
                     </quoteWidth>
@@ -317,11 +317,11 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">S</numIndex><numIndex index="1">s</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">M</numIndex><numIndex index="1">m</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">L</numIndex><numIndex index="1">l</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">Volle Breite</numIndex><numIndex index="1">full</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>S</label><value>s</value></numIndex>
+                                <numIndex index="2"><label>M</label><value>m</value></numIndex>
+                                <numIndex index="3"><label>L</label><value>l</value></numIndex>
+                                <numIndex index="4"><label>Volle Breite</label><value>full</value></numIndex>
                             </items>
                         </config>
                     </carWidth>
@@ -368,10 +368,10 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Neueste zuerst</numIndex><numIndex index="1">newest</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Beste zuerst</numIndex><numIndex index="1">best</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">Gemischt</numIndex><numIndex index="1">mix</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Neueste zuerst</label><value>newest</value></numIndex>
+                                <numIndex index="2"><label>Beste zuerst</label><value>best</value></numIndex>
+                                <numIndex index="3"><label>Gemischt</label><value>mix</value></numIndex>
                             </items>
                         </config>
                     </wallSort>
@@ -382,11 +382,11 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">M</numIndex><numIndex index="1">m</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">L</numIndex><numIndex index="1">l</numIndex></numIndex>
-                                <numIndex index="3"><numIndex index="0">XL</numIndex><numIndex index="1">xl</numIndex></numIndex>
-                                <numIndex index="4"><numIndex index="0">Volle Breite</numIndex><numIndex index="1">full</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>M</label><value>m</value></numIndex>
+                                <numIndex index="2"><label>L</label><value>l</value></numIndex>
+                                <numIndex index="3"><label>XL</label><value>xl</value></numIndex>
+                                <numIndex index="4"><label>Volle Breite</label><value>full</value></numIndex>
                             </items>
                         </config>
                     </wallWidth>
@@ -406,9 +406,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Am Bildschirmrand fixiert</numIndex><numIndex index="1">fixed</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Im Seitenfluss (inline)</numIndex><numIndex index="1">inline</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Am Bildschirmrand fixiert</label><value>fixed</value></numIndex>
+                                <numIndex index="2"><label>Im Seitenfluss (inline)</label><value>inline</value></numIndex>
                             </items>
                         </config>
                     </footerBarPosition>
@@ -457,9 +457,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Ja</label><value>1</value></numIndex>
+                                <numIndex index="2"><label>Nein</label><value>0</value></numIndex>
                             </items>
                         </config>
                     </reviewsOnlyNamed>
@@ -470,9 +470,9 @@
                             <renderType>selectSingle</renderType>
                             <default></default>
                             <items>
-                                <numIndex index="0"><numIndex index="0">Standard (aus Dashboard)</numIndex><numIndex index="1"></numIndex></numIndex>
-                                <numIndex index="1"><numIndex index="0">Ja</numIndex><numIndex index="1">1</numIndex></numIndex>
-                                <numIndex index="2"><numIndex index="0">Nein</numIndex><numIndex index="1">0</numIndex></numIndex>
+                                <numIndex index="0"><label>Standard (aus Dashboard)</label><value></value></numIndex>
+                                <numIndex index="1"><label>Ja</label><value>1</value></numIndex>
+                                <numIndex index="2"><label>Nein</label><value>0</value></numIndex>
                             </items>
                         </config>
                     </reviewsOnlyWithComment>
