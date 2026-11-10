@@ -52,6 +52,9 @@ final class JsonLdViewHelper extends AbstractViewHelper
             ->fetch($settings->jsonLdUrl(), $settings->key);
         if ($json === null) {
             return '';
+        // Der Provider liefert das JSON mit JSON_HEX_*-Flags neu kodiert – ohne
+        // rohes "<", ">" oder "&" –, deshalb darf es trotz escapeOutput = false
+        // unverändert in den <script>-Block.
         }
 
         return '<script type="application/ld+json" data-rs-jsonld>' . $json . '</script>';

@@ -51,17 +51,22 @@ final class JsonLdInjector implements MiddlewareInterface
         $html = (string)$response->getBody();
 
         // Need a closing head, and no JSON-LD block yet (single-block rule).
-        if (!str_contains($html, '</head>') || str_contains($html, 'data-rs-jsonld')) {
+        $headEnd = strpos($html, '</head>');
+        if ($headEnd === false || str_contains($html, 'data-rs-jsonld')) {
             return $response;
         }
 
+        // The provider returns the JSON re-encoded with JSON_HEX_* flags, so it
+        // cannot close the script block (no raw "<", ">" or "&").
         $json = $this->jsonLdProvider->fetch($settings->jsonLdUrl(), $settings->key);
         if ($json === null) {
             return $response;
         }
 
+        // Insert before the first </head> only: a later "</head>" in the body
+        // (code sample, inline script string) must not receive a second block.
         $script = '<script type="application/ld+json" data-rs-jsonld>' . $json . '</script>';
-        $html = str_replace('</head>', $script . '</head>', $html);
+        $html = substr_replace($html, $script, $headEnd, 0);
 
         return $response
             ->withBody($this->streamFactory->createStream($html))
