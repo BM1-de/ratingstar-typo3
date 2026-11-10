@@ -15,7 +15,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * Gibt das serverseitige RatingStar-JSON-LD (LocalBusiness + AggregateRating) an
  * Ort und Stelle aus – für gezielte Platzierung statt der site-weiten Middleware:
  *
- *   <rs:jsonld/>
+ *   <rs:jsonLd/>
+ *
+ * Schreibweise mit großem L: Fluid bildet den Klassennamen aus dem Tag
+ * (jsonLd → JsonLdViewHelper). <rs:jsonld/> sucht JsonldViewHelper und löst nur
+ * auf Dateisystemen ohne Groß-/Kleinschreibung auf, auf einem Linux-Server nicht.
  *
  * Der Marker data-rs-jsonld sorgt für die Ein-Block-Regel: die Middleware
  * injiziert dann nicht zusätzlich, und seal.js unterlässt seine Client-Injektion.
@@ -48,13 +52,13 @@ final class JsonLdViewHelper extends AbstractViewHelper
             return '';
         }
 
+        // Der Provider liefert das JSON mit JSON_HEX_*-Flags neu kodiert – ohne
+        // rohes "<", ">" oder "&" –, deshalb darf es trotz escapeOutput = false
+        // unverändert in den <script>-Block.
         $json = GeneralUtility::makeInstance(JsonLdProvider::class)
             ->fetch($settings->jsonLdUrl(), $settings->key);
         if ($json === null) {
             return '';
-        // Der Provider liefert das JSON mit JSON_HEX_*-Flags neu kodiert – ohne
-        // rohes "<", ">" oder "&" –, deshalb darf es trotz escapeOutput = false
-        // unverändert in den <script>-Block.
         }
 
         return '<script type="application/ld+json" data-rs-jsonld>' . $json . '</script>';

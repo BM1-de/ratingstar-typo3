@@ -34,7 +34,7 @@ TYPO3 v13 + v14 · GPL-2.0-or-later
 - **Google-Sterne:** serverseitiges JSON-LD (`LocalBusiness` +
   `AggregateRating`) über den offiziellen key-basierten RatingStar-Endpunkt —
   site-weit per Middleware oder gezielt als Content-Element/ViewHelper
-  `<rs:jsonld>`; genau ein JSON-LD-Block pro Seite
+  `<rs:jsonLd>` (mit großem L); genau ein JSON-LD-Block pro Seite
 
 Beispiele:
 

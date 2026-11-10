@@ -20,7 +20,7 @@ tt_content.ratingstar_seal {
 
 # Rendering for the "RatingStar Google-Sterne" content element
 # (CType: ratingstar_jsonld). Outputs the server-side JSON-LD inline via the
-# <rs:jsonld> ViewHelper — for targeted placement instead of the site-wide
+# <rs:jsonLd> ViewHelper — for targeted placement instead of the site-wide
 # middleware injection.
 tt_content.ratingstar_jsonld = FLUIDTEMPLATE
 tt_content.ratingstar_jsonld {

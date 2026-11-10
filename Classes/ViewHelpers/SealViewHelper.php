@@ -108,7 +108,7 @@ final class SealViewHelper extends AbstractViewHelper
         }
 
         // Single-block rule (CONTRACT #7): when the site serves JSON-LD itself
-        // (site-wide middleware or a <rs:jsonld> element), every .rs-seal must
+        // (site-wide middleware or a <rs:jsonLd> element), every .rs-seal must
         // carry data-no-richsnippet so seal.js suppresses its own client-side
         // rich snippet – exactly one JSON-LD block per page.
         if ($settings !== null && $settings->jsonLdEnabled && $settings->key !== '') {

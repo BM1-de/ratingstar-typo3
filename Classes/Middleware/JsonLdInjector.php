@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Site\Entity\Site;
  * Injiziert das serverseitige RatingStar-JSON-LD (LocalBusiness + AggregateRating)
  * in den <head> jeder Frontend-HTML-Seite – wenn per Site Setting aktiviert und ein
  * Embed-Key gesetzt ist. Ein-Block-Regel: überspringt, wenn die Seite bereits einen
- * data-rs-jsonld-Block trägt (z. B. via Content-Element/<rs:jsonld>); und seal.js
+ * data-rs-jsonld-Block trägt (z. B. via Content-Element/<rs:jsonLd>); und seal.js
  * unterlässt seine Client-Injektion, sobald dieser Marker im DOM ist.
  */
 final class JsonLdInjector implements MiddlewareInterface
