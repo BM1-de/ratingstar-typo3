@@ -23,7 +23,7 @@ settings:
     category: ratingstar
   ratingstar.jsonLdEnabled:
     label: 'Google-Sterne (JSON-LD) site-weit ausgeben'
-    description: 'Bettet das serverseitige LocalBusiness/AggregateRating-Snippet automatisch in den Head jeder Seite ein. Für gezielte Platzierung stattdessen das Content-Element „RatingStar Google-Sterne" nutzen.'
+    description: 'Bettet das serverseitige AggregateRating-Snippet automatisch in den Head jeder Seite ein. Für gezielte Platzierung stattdessen das Content-Element „RatingStar Google-Sterne" nutzen.'
     type: bool
     default: true
     category: ratingstar

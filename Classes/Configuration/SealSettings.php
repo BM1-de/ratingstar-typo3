@@ -48,10 +48,12 @@ final readonly class SealSettings
 
     /**
      * Key-basierter JSON-LD-Endpunkt – rename-fest und auf allen Tarifen offen.
-     * Die App baut das LocalBusiness-Schema selbst (inkl. Tarif-Gate).
+     * Die App baut das Schema selbst (inkl. Tarif-Gate). `schema=product` sagt
+     * ihr, dass diese Extension den Typ Product ausgeben kann; welcher Typ kommt
+     * (Product oder LocalBusiness), ist im RatingStar-Backend eingestellt.
      */
     public function jsonLdUrl(): string
     {
-        return $this->baseUrl . '/seal/k/' . rawurlencode($this->key) . '.jsonld';
+        return $this->baseUrl . '/seal/k/' . rawurlencode($this->key) . '.jsonld?schema=product';
     }
 }

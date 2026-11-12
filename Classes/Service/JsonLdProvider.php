@@ -9,7 +9,7 @@ use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Http\RequestFactory;
 
 /**
- * Holt das serverseitige JSON-LD (LocalBusiness + AggregateRating) einer Filiale
+ * Holt das serverseitige JSON-LD (AggregateRating) einer Filiale
  * vom key-basierten RatingStar-Endpunkt und cached es. Die App baut das komplette
  * Schema selbst (inkl. Tarif-Gate) – diese Klasse ruft es ab, prüft es, kodiert
  * es für die Ausgabe in einem <script>-Block neu und puffert das Ergebnis.
@@ -36,6 +36,9 @@ final class JsonLdProvider
      */
     private const CACHE_PREFIX = 'jsonld_v2_';
 
+    /** schema.org-Typen, mit denen die App antwortet (im RatingStar-Backend eingestellt). */
+    private const ACCEPTED_TYPES = ['LocalBusiness', 'Product'];
+
     /**
      * JSON_HEX_* schreibt <, >, &, ' und " als \uXXXX. Das JSON bleibt für
      * schema.org-Auswerter gültig, aber ein Firmenname oder Bewertungstext mit
@@ -55,7 +58,7 @@ final class JsonLdProvider
      * Liefert das JSON-LD-Objekt der gegebenen URL als JSON-String, der gefahrlos
      * in einen <script type="application/ld+json">-Block gesetzt werden kann –
      * oder null, wenn der Key leer ist, der Abruf scheitert, die Antwort kein
-     * LocalBusiness-Objekt ist oder der Cache nicht nutzbar ist. Ergebnis ~6 h
+     * Objekt der angenommenen Typen ist oder der Cache nicht nutzbar ist. Ergebnis ~6 h
      * gecached (Fehler 15 min).
      */
     public function fetch(string $jsonLdUrl, string $key): ?string
@@ -127,8 +130,8 @@ final class JsonLdProvider
     }
 
     /**
-     * Die Remote-Antwort wird nie als Rohtext weitergereicht: dekodieren, auf ein
-     * LocalBusiness-Objekt prüfen und neu kodieren. Alles andere (Fehlerseite,
+     * Die Remote-Antwort wird nie als Rohtext weitergereicht: dekodieren, auf einen
+     * der angenommenen Typen prüfen und neu kodieren. Alles andere (Fehlerseite,
      * kaputtes JSON, fremder Typ) ergibt null, also keine Ausgabe.
      *
      * @throws \JsonException
@@ -138,7 +141,7 @@ final class JsonLdProvider
         // Als Objekt dekodieren, damit leere Objekte ({}) nicht zu Listen ([]) werden.
         $data = json_decode($body, false, 512, JSON_THROW_ON_ERROR);
 
-        if (!$data instanceof \stdClass || ($data->{'@type'} ?? null) !== 'LocalBusiness') {
+        if (!$data instanceof \stdClass || !in_array($data->{'@type'} ?? null, self::ACCEPTED_TYPES, true)) {
             return null;
         }
 

@@ -13,7 +13,7 @@
                 <source>RatingStar Google-Sterne</source>
             </trans-unit>
             <trans-unit id="ce.jsonld.description">
-                <source>Gibt das serverseitige JSON-LD (LocalBusiness/AggregateRating) der Filiale an dieser Stelle aus — für Rich Snippets in der Google-Suche. Alternative zur site-weiten Ausgabe; Key kommt aus den Site Settings.</source>
+                <source>Gibt das serverseitige JSON-LD (AggregateRating) der Filiale an dieser Stelle aus — für Rich Snippets in der Google-Suche. Alternative zur site-weiten Ausgabe; Key kommt aus den Site Settings.</source>
             </trans-unit>
         </body>
     </file>

@@ -12,7 +12,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Gibt das serverseitige RatingStar-JSON-LD (LocalBusiness + AggregateRating) an
+ * Gibt das serverseitige RatingStar-JSON-LD (AggregateRating) an
  * Ort und Stelle aus – für gezielte Platzierung statt der site-weiten Middleware:
  *
  *   <rs:jsonLd/>

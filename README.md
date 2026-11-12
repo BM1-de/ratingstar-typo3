@@ -31,8 +31,7 @@ TYPO3 v13 + v14 · GPL-2.0-or-later
   Dashboard-Generator, überschreibt gleichnamige Feld-Einstellungen); im
   ViewHelper entsprechend `overrides="{…}"` und `dataAttributes="…"`.
   Ungültige Werte ignoriert `seal.js` automatisch.
-- **Google-Sterne:** serverseitiges JSON-LD (`LocalBusiness` +
-  `AggregateRating`) über den offiziellen key-basierten RatingStar-Endpunkt —
+- **Google-Sterne:** serverseitiges JSON-LD (`AggregateRating`) über den offiziellen key-basierten RatingStar-Endpunkt —
   site-weit per Middleware oder gezielt als Content-Element/ViewHelper
   `<rs:jsonLd>` (mit großem L); genau ein JSON-LD-Block pro Seite
 
