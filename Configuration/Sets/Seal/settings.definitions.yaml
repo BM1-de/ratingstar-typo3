@@ -5,7 +5,7 @@ categories:
 settings:
   ratingstar.slug:
     label: 'Profil-Slug'
-    description: 'Slug der RatingStar-Filiale – der Teil hinter ratingstar.de/t/ (z. B. "meine-filiale").'
+    description: 'Slug der RatingStar-Filiale – der Teil hinter ratingstar.de/t/ (z. B. "meine-filiale"). Die eigene Domain im RatingStar-Dashboard unter „Siegel & Widgets → Domains & Statistik" freigeben, sonst bleibt das Siegel leer, sobald dort eine Domain bestätigt ist.'
     type: string
     default: ''
     category: ratingstar

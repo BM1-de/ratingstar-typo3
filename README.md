@@ -82,6 +82,42 @@ Danach zwei Schritte je Site:
      key: <Embed-Key aus dem RatingStar-Dashboard>
    ```
 
+### Ohne Composer (Classic Mode)
+
+Die Extension steht im TER als
+[`ratingstar_seal`](https://extensions.typo3.org/extension/ratingstar_seal).
+Im Backend-Modul *Extensions* nach `ratingstar_seal` suchen und installieren
+oder das ZIP aus dem TER hochladen, die Extension aktivieren und danach wie
+oben das Datenbank-Schema aktualisieren. Die beiden Schritte je Site gelten
+genauso.
+
+## Domain freigeben
+
+Sobald im RatingStar-Dashboard eine Domain per DNS bestätigt wurde, liefert
+RatingStar die Siegel-Daten nur noch an freigegebene Domains aus. Die eigene
+Website deshalb im RatingStar-Dashboard unter **„Siegel & Widgets → Domains &
+Statistik"** (Abschnitt „Freigegebene Domains") eintragen und per
+`TXT _ratingstar.<domain>` bestätigen. Fehlt die Freigabe, bleibt das Siegel
+auf dieser Domain leer. Die Google-Sterne laufen über den Embed-Key und sind
+davon nicht betroffen.
+
+## Zwischenspeicher
+
+Die Google-Sterne (JSON-LD) speichert die Extension 6 Stunden im TYPO3-Cache
+`ratingstar_seal`. Nach einer Änderung im RatingStar-Dashboard oder einem
+neuen Embed-Key *Alle Caches leeren* (oder `vendor/bin/typo3 cache:flush`),
+dann greift die Änderung sofort. Die Siegel selbst lädt `seal.js` immer
+aktuell von RatingStar.
+
+## Datenschutz
+
+Die Siegel-Widgets laden `seal.js`, `seal.css`, die Bewertungsdaten und einen
+Zähl-Pixel von der RatingStar-Domain (Standard `ratingstar.de`). Der Browser
+der Besucher verbindet sich dabei mit diesem Host. Die RatingStar-Domain
+deshalb in der Datenschutzerklärung nennen und im Consent-Tool berücksichtigen.
+Die Google-Sterne holt die Extension serverseitig; dafür baut der Browser der
+Besucher keine Verbindung zu RatingStar auf.
+
 ## Anforderungen
 
 - TYPO3 13.4 LTS oder 14
